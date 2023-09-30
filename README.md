@@ -21,7 +21,7 @@ La arquitectura de la aplicación consiste en levantar la aplicación de Spark e
 
 ## Aplicación
 
-La aplicación se desarrolló en un clúster de máquinas virtuales en Azure. La descripción y forma de ejecutar la aplicación se encuentra en la carpeta [Proyecto Big Data](/Proyecto%20Big%20Data/).
+La aplicación se desarrolló en un clúster de máquinas virtuales en Azure. La descripción y forma de ejecutar la aplicación se encuentra en la carpeta [Proyecto Big Data](/Proyecto%20Big%20Data/). Por otro lado, se adaptó la aplicación para que, en una versión más pequeña, pueda ser levantada utilizando Dockers, y el entrenamiento se realiza de forma local. Esta versión se encuentra en la carpeta [Proyecto Docker](/SparkML%20Basic/).
 
 ## Tópicos de Cloud Computing
 
