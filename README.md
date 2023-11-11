@@ -27,6 +27,10 @@ La aplicación se desarrolló en un clúster de máquinas virtuales en Azure. La
 
 Debido a la naturaleza de los datos, esta aplicación incluye utilizar los conceptos de Big Data (porque este problema se adapta a las 5 V's de Big Data) y Machine Learning (porque utilizaremos modelos de clasificación para predecir valores nuevos), sumados a los de Cloud Computing para poder levantar la aplicación en un ambiente de contenedores en la nube.
 
+## Implementación
+
+Para la implementación se levantó un cluster de Minikube en Windows. Los detalles de la implementación se encuentran en la carpeta [K8s Spark ML](/K8s%20Spark%20ML/).
+
 ## Referencias
 
 Las siguientes referencias fueron utilizadas para el desarrollo de la aplicación:

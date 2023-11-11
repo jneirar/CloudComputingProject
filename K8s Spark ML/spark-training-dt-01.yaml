@@ -1,0 +1,54 @@
+apiVersion: "sparkoperator.k8s.io/v1beta2"
+kind: SparkApplication
+metadata:
+  name: training-dt-01
+  namespace: default
+spec:
+  type: Python
+  pythonVersion: "3"
+  mode: cluster
+  image: "training-dt-01:latest"
+  imagePullPolicy: IfNotPresent
+  mainApplicationFile: "local:///training_dt.py"
+  sparkVersion: "3.4.0"
+  restartPolicy:
+    type: Never
+  sparkConf:
+    "spark.ui.prometheus.enabled": "true"
+    "spark.executor.processTreeMetrics.enabled": "true"
+  volumes:
+    - name: data-volume
+      persistentVolumeClaim:
+        claimName: pvc01
+    - name: spark-metrics-config
+      configMap:
+        name: spark-metrics-config
+  driver:
+    cores: 1
+    coreLimit: "1200m"
+    memory: "1024m"
+    labels:
+      version: 3.4.0
+    serviceAccount: spark
+    volumeMounts:
+      - name: data-volume
+        mountPath: /mnt/data01
+      - name: spark-metrics-config
+        mountPath: /etc/spark/conf
+    env:
+    - name: SPARK_CONF_DIR
+      value: "/etc/spark/conf"
+  executor:
+    cores: 1
+    instances: 2
+    memory: "1024m"
+    labels:
+      version: 3.4.0
+    volumeMounts:
+      - name: data-volume
+        mountPath: /mnt/data01
+      - name: spark-metrics-config
+        mountPath: /etc/spark/conf
+    env:
+    - name: SPARK_CONF_DIR
+      value: "/etc/spark/conf"
