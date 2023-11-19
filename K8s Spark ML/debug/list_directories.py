@@ -11,7 +11,7 @@ conf = SparkConf().setAppName('DirectoryLister')
 sc = SparkContext(conf=conf)
 
 # Define el path al directorio para revisar
-directory_path = '/mnt/data01'
+directory_path = '/data01'
 
 def list_dirs_and_count_files(path):
     # Lista de subdirectorios

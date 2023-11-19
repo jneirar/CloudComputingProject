@@ -1,4 +1,4 @@
-# minikube mount D:/data01:/mnt/data01
+# minikube mount E:/data01:/mnt/data01
 apiVersion: v1
 kind: PersistentVolume
 metadata:

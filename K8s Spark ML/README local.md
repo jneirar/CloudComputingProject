@@ -1,3 +1,7 @@
+# Arquitectura local
+
+![Gráfica](images/arch/Arch1.png)
+
 # Video presentación
 
 [https://youtu.be/yUM5FmQyuu4](https://youtu.be/yUM5FmQyuu4)
@@ -73,7 +77,7 @@ roleRef:
 ```
 
 ```bash
-kubectl apply -f spark-role-binding.yaml
+kubectl apply -f spark-permission.yaml
 ```
 
 Luego, podremos usar SparkApplication en un archivo yaml. Las operaciones que podemos realizar son:

@@ -1,7 +1,7 @@
 apiVersion: "sparkoperator.k8s.io/v1beta2"
 kind: SparkApplication
 metadata:
-  name: training-dt-01
+  name: training-dt-100
   namespace: default
 spec:
   type: Python
@@ -9,7 +9,7 @@ spec:
   mode: cluster
   imagePullSecrets:
     - regcred
-  image: "registry.digitalocean.com/docrjneirar/training-dt-01"
+  image: "registry.digitalocean.com/docrjneirar/training-dt-100"
   imagePullPolicy: IfNotPresent
   mainApplicationFile: "local:///training_dt.py"
   sparkVersion: "3.4.0"

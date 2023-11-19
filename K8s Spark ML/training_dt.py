@@ -14,8 +14,8 @@ spark = SparkSession.builder \
     .appName("Classifier") \
     .getOrCreate()
 
-percentage = '01'
-path_base = "/mnt/data" + percentage + "/"
+percentage = '100'
+path_base = "/data" + percentage + "/"
 folder_paths = [path_base + "Education",
                 path_base + "Finance",
                 path_base + "Games",
@@ -94,7 +94,7 @@ confusion_matrix = metrics.confusionMatrix()
 
 tiempo_programa_final = time.time() - tiempo_programa
 
-print("-----------Resultados para el modelo decision-tree con 60% de datos----------- ")
+print("-----------Resultados para el modelo decision-tree----------- ")
 
 print("Accuracy:", accuracy)
 print("Precision:", precision)
@@ -102,44 +102,6 @@ print("Recall:", recall)
 print("F1 Score:", f1)
 print("Duración de entrenamiento: ", total_time,"seg")
 print("Duración total del programa: ", tiempo_programa_final,"seg")
-
-confusion_matrix_np = confusion_matrix.toArray()
-
-# Crear una figura y un eje
-fig, ax = plt.subplots()
-
-# Plotear la matriz de confusión como una imagen
-im = ax.imshow(confusion_matrix_np, cmap='Blues')
-
-# Configurar etiquetas de ejes
-ax.set_xlabel('Predicted')
-ax.set_ylabel('Actual')
-
-# Crear una barra de color
-cbar = ax.figure.colorbar(im, ax=ax)
-
-# Configurar los valores de la matriz como etiquetas en cada celda
-for i in range(confusion_matrix_np.shape[0]):
-    for j in range(confusion_matrix_np.shape[1]):
-        ax.text(j, i, '{:.2f}'.format(confusion_matrix_np[i, j]), ha='center', va='center', color='white', fontsize=0)
-
-ax.set_xticks(np.arange(confusion_matrix_np.shape[1]))
-ax.set_yticks(np.arange(confusion_matrix_np.shape[0]))
-
-plt.setp(ax.get_xticklabels(), rotation = 45, ha= "right", rotation_mode = "anchor")
-# Guardar la figura como un archivo PNG
-im.set_clim(vmin=0, vmax=confusion_matrix_np.max() * 0.8)
-
-output_directory = path_base + "output_images/"
-filename = output_directory + "confusion_matrix_dt_" + percentage + "%.png"
-
-# Asegúrate de que el directorio exista o créalo
-import os
-if not os.path.exists(output_directory):
-    os.makedirs(output_directory)
-
-# Guarda la figura en la ruta especificada
-plt.savefig(filename, dpi=300)
 
 # Cerrar SparkContext y SparkSession
 spark.stop()

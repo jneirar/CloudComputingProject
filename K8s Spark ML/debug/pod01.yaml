@@ -7,16 +7,14 @@ spec:
   type: Python
   pythonVersion: "3"
   mode: cluster
-  image: "list-directory-01:latest"
+  imagePullSecrets:
+    - regcred
+  image: "registry.digitalocean.com/docrjneirar/list-directory-01"
   imagePullPolicy: IfNotPresent
   mainApplicationFile: "local:///list_directories.py"
   sparkVersion: "3.5.0"
   restartPolicy:
     type: Never
-  volumes:
-    - name: data-volume
-      persistentVolumeClaim:
-        claimName: pvc01
   driver:
     cores: 1
     coreLimit: "1200m"
@@ -24,15 +22,9 @@ spec:
     labels:
       version: 3.5.0
     serviceAccount: spark
-    volumeMounts:
-      - name: data-volume
-        mountPath: /mnt/data01
   executor:
     cores: 1
     instances: 1
     memory: "512m"
     labels:
       version: 3.5.0
-    volumeMounts:
-      - name: data-volume
-        mountPath: /mnt/data01
